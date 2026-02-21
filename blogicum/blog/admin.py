@@ -1,13 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import Group
 from django.db.models import Count
 
 from .models import Category, Location, Post
 
 User = get_user_model()
-
 
 
 try:
@@ -26,7 +24,6 @@ class CustomUserAdmin(UserAdmin):
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        # ВАЖНО: "posts" должно совпадать с related_name у Post.author
         return qs.annotate(posts_count=Count("posts"))
 
 
