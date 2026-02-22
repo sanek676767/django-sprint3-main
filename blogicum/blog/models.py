@@ -46,7 +46,10 @@ class Category(PublishedCreatedModel):
 
 
 class Location(PublishedCreatedModel):
-    name = models.CharField("Название места", max_length=MAX_LOCATION_NAME_LENGTH)
+    name = models.CharField(
+        "Название места",
+        max_length=MAX_LOCATION_NAME_LENGTH,
+    )
 
     class Meta(PublishedCreatedModel.Meta):
         verbose_name = "местоположение"

@@ -4,6 +4,7 @@ from .models import Category, Post
 
 POSTS_LIMIT = 5
 
+
 def index(request):
     post_list = Post.objects.published()[:POSTS_LIMIT]
     return render(request, "blog/index.html", {"post_list": post_list})
@@ -16,9 +17,10 @@ def post_detail(request, id):
 
 def category_posts(request, category_slug):
     category = get_object_or_404(
-        Category, 
-        slug=category_slug, 
-        is_published=True)
+        Category,
+        slug=category_slug,
+        is_published=True,
+    )
     post_list = category.posts.published()
 
     context = {"category": category, "post_list": post_list}
